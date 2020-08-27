@@ -19,8 +19,11 @@ function Books(title, author, year){
     }   
 */
 }
+const Book1 = new Books('The Lord Of The Rings', 'J.R.R Tolkien', 1929)
+const Book2 = new Books('Sodoma', 'Marquéz de Sade', 1850)
 
-//      AGREGAREMOS AHORA EL MÉTODO A LA FUNCIÓN
+
+//      AGREGAREMOS AHORA EL MÉTODO A LA FUNCIÓN BOOKS
 Books.prototype.getResumen = function(){
     return document.write(`
     <div>
@@ -31,8 +34,7 @@ Books.prototype.getResumen = function(){
     `)
 }
 
-const Book1 = new Books('The Lord Of The Rings', 'J.R.R Tolkien', 1929)
-const Book2 = new Books('Sodoma', 'Marquéz de Sade', 1850)
+    // TIMPO QUE LLEVA EL LIBRO DESDE QUE SE PUBLICO 
 Books.prototype.getYears = function(){
                 // Con date obtenemos el año actual en el que estamos.
     const years = new Date().getFullYear() - this.year
@@ -71,12 +73,21 @@ function Revista(title, author, year, month){
       //call: llama los párametros de Books 
 }
 
+
+//  HERENCIA DEL PROTOTYPE
+Revista.prototype = Object.create(Books.prototype)
+            // Asigno que cree de la funcion libros los mismos métodos de BOOKS
+
+Revista.prototype.constructor = Revista
+
+
 const revista1 = new Revista('Revista 1', 'Alfred', 1996, 'March')
 document.write(`
     <div>
         ${Object.values(revista1)}
     </div>
 `)
+
 
 Revista.prototype.revisado = function(newYear){
     this.year = newYear
@@ -87,3 +98,6 @@ revista1.revisado(2012)
 document.write(`
 ${Object.values(revista1)}
 `)
+
+
+console.log(revista1);

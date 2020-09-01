@@ -58,21 +58,22 @@ class Comics extends bookStore{
 
 class ShoppingCart {
     constructor(){
-        this.prducts = []
+        this.products = []
     }
 
     addProduct(amount, price){
                         // genera una copia del arreglo anterior 
-        this.products.push( ...[Array(amount).fill(price)]);
+        this.products.push([...Array(amount).fill(price)])
     }
 
     showProducts(){
-        return console.log(this.prducts);
+        return console.log(this.products);
     }
 
     calcTotal(){         
-        return this.prducts.map(price => price )           // 0 es el que recibe el acumulator
-                            .reduce((acumulator, price) => acumulator + price, 0)
+        return this.products
+                    .map(price => price )           // 0 es el que recibe el acumulator
+                    .reduce((ac, price) => ac + price, 0)
     }
 
     printTicket(){
@@ -112,8 +113,11 @@ document.write(`
     <div>${comic1.ilustrator}</div>
 `)
 
-
+// cREAMOS UN CARRITO DE COMPRAS
 const cart = new ShoppingCart()
-
+// AGREGAMOS PRODUCTOS AL CARRITO
 cart.addProduct(2, book1.price);
+cart.addProduct(3, book1.price)
+// MOSTRAMOS LOS PRODUSCOTS QUE HEMOS AGREGADO AL CARRITO
 cart.showProducts()
+cart.printTicket()
